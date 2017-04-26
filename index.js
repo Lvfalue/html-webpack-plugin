@@ -4,9 +4,9 @@ var fs = require('fs');
 var _ = require('lodash');
 var Promise = require('bluebird');
 var path = require('path');
-var childCompiler = require('html-webpack-plugin/lib/compiler.js');
-var prettyError = require('html-webpack-plugin/lib/errors.js');
-var chunkSorter = require('html-webpack-plugin/lib/chunksorter.js');
+var childCompiler = require('./lib/compiler.js');
+var prettyError = require('./lib/errors.js');
+var chunkSorter = require('./lib/chunksorter.js');
 Promise.promisifyAll(fs);
 
 function HtmlWebpackPlugin (options) {
@@ -563,7 +563,7 @@ HtmlWebpackPlugin.prototype.createHtmlTag = function (tagDefinition) {
 HtmlWebpackPlugin.prototype.getFullTemplatePath = function (template, context) {
   // If the template doesn't use a loader use the lodash template loader
   if (template.indexOf('!') === -1) {
-    template = require.resolve('html-webpack-plugin/lib/loader.js') + '!' + path.resolve(context, template);
+    template = require.resolve('./lib/loader.js') + '!' + path.resolve(context, template);
   }
   // Resolve template path
   return template.replace(
