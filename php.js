@@ -455,12 +455,10 @@ HtmlWebpackPlugin.prototype.htmlWebpackPluginAssets = function (compilation, chu
 HtmlWebpackPlugin.prototype.generateAssetTags = function (assets) {
   // Turn script files into script tags
   var scripts = assets.js.map(function (scriptPath) {
-    console.log('script path ==> ', scriptPath);
-    ///c
     var reg = /[^\/]*\.js/;
     var match = scriptPath.match(reg);
     if (match && match[0]) {
-      scriptPath = "ANT_STATIC_RESOURCE_PATH/js/" + match[0] + "?v=ANT_STATIC_RESOURCE_VERSION";
+      scriptPath = 'ANT_STATIC_RESOURCE_PATH/js/' + match[0] + '?v=ANT_STATIC_RESOURCE_VERSION';
     }
     return {
       tagName: 'script',
@@ -471,8 +469,6 @@ HtmlWebpackPlugin.prototype.generateAssetTags = function (assets) {
       }
     };
   });
-  // Make tags self-closing in case of xhtml
-  var selfClosingTag = !!this.options.xhtml;
   // Injection targets
   var head = [];
   var body = [];
